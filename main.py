@@ -13,23 +13,6 @@ IMMICH_INSTANCE_URL = os.getenv('IMMICH_INSTANCE_URL')
 ALBUM_ID = os.getenv('IMMICH_ALBUM_ID')
 DOWNLOAD_PATH = Path(os.getenv('IMMICH_DOWNLOAD_PATH', './downloads'))
 
-
-# def get_album_id():
-#     """Get album ID by name from Immich API"""
-#     headers = {'x-api-key': IMMICH_API_KEY}
-#     response = requests.get(
-#         f"{IMMICH_INSTANCE_URL}/albums",
-#         headers=headers,
-#         params={'albumName': ALBUM_NAME}
-#     )
-#     response.raise_for_status()
-#
-#     for album in response.json():
-#         if album['albumName'] == ALBUM_NAME:
-#             return album['id']
-#     raise ValueError(f"Album '{ALBUM_NAME}' not found")
-
-
 def get_album_assets(album_id):
     """Retrieve all assets in album with pagination"""
     headers = {'x-api-key': IMMICH_API_KEY}
