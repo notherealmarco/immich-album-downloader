@@ -38,7 +38,7 @@ Or set it up as a `systemd` service for automatic and scheduled execution.
 
 ---
 
-## Example: systemd Service
+## Running the script automatically
 
 Create a service file at `/etc/systemd/user/immich-album-downloader.service`:
 
@@ -63,13 +63,13 @@ WantedBy=default.target
 Enable and start the service:
 
 ```bash
-systemctl --user daemon-reexec
+systemctl --user daemon-reload
 systemctl --user enable --now immich-album-downloader.service
 ```
 
 ---
 
-## Example: systemd Timer
+### Running the script periodically
 
 To run the download periodically, create `/etc/systemd/user/immich-album-downloader.timer`:
 
