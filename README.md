@@ -1,8 +1,3 @@
-Sure! Here's a clean and minimal `README.md` for your Immich album downloader project, including setup instructions and the example `systemd` service and timer:
-
----
-
-```markdown
 # Immich Album Downloader
 
 This Python script downloads all assets (photos/videos) from a specific album in your [Immich](https://github.com/immich-app/immich) instance, using its API. It supports resuming by skipping files that already exist locally.
