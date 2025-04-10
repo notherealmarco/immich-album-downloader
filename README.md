@@ -26,16 +26,17 @@ or you can use your system's package manager.
 | `IMMICH_ALBUM_ID`      | The ID of the album to download        |
 | `IMMICH_DOWNLOAD_PATH` | Directory to save downloaded assets    |
 
-## Usage
+## Configuration
 
-You can run the script manually:
+1. Copy the files:
 
 ```bash
-python3 main.py
+sudo mkdir /opt/immich-album-downloader
+sudo cp main.py /opt/immich-album-downloader/main.py
+sudo cp .env.template /opt/immich-album-downloader/.env
 ```
 
-Or set it up as a `systemd` service for automatic and scheduled execution.
-
+2. Modify `/opt/immich-album-downloader/.env` accordingly
 ---
 
 ## Running the script automatically
@@ -49,10 +50,7 @@ After=network.target
 
 [Service]
 Type=simple
-Environment="IMMICH_ALBUM_ID=my-super-cool-album-id"
-Environment="IMMICH_API_KEY=averysecretapikeypleasedonotsteal"
-Environment="IMMICH_DOWNLOAD_PATH=/home/marco/wallapers/"
-Environment="IMMICH_INSTANCE_URL=https://your-immich.instance/api"
+EnvironmentFile=/opt/immich-album-downloader/.env
 ExecStart=/usr/bin/python3 /opt/immich-album-downloader/main.py
 Restart=no
 
