@@ -58,7 +58,7 @@ Restart=no
 WantedBy=default.target
 ```
 
-Enable and start the service:
+Enable and start the service (only if you don't configure the timer below):
 
 ```bash
 systemctl --user daemon-reload
