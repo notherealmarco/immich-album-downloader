@@ -31,6 +31,7 @@ or you can use your system's package manager.
 1. Copy the files:
 
 ```bash
+git clone https://git.marcorealacci.me/marcorealacci/immich-album-downloader.git
 sudo mkdir /opt/immich-album-downloader
 sudo cp main.py /opt/immich-album-downloader/main.py
 sudo cp .env.template /opt/immich-album-downloader/.env
