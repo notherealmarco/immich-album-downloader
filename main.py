@@ -1,6 +1,8 @@
 import os
 import requests
 import logging
+import time
+import socket
 from pathlib import Path
 
 # Configure logging
@@ -61,12 +63,23 @@ def download_assets(assets):
         else:
             logging.debug(f"Skipping existing file {filename}")
 
-
 if __name__ == "__main__":
-    try:
-        assets = get_album_assets(ALBUM_ID)
-        download_assets(assets)
-        logging.info(f"Sync complete. {len(assets)} assets processed")
-    except Exception as e:
-        logging.error(f"Sync failed: {str(e)}")
-        raise
+    tryAgain = 5
+    while tryAgain > 0:
+        try:
+            assets = get_album_assets(ALBUM_ID)
+            download_assets(assets)
+            logging.info(f"Sync complete. {len(assets)} assets processed")
+            break
+        except (requests.exceptions.ConnectionError, socket.gaierror, socket.timeout, TimeoutError) as e:
+            logging.error(f"Error Network: {type(e).__name__}: {e}")
+            if tryAgain == 0:
+                logging.info("Max retries reached. Exiting.")
+                break
+            else:
+                logging.info("Retrying in 5 minutes...")
+            tryAgain -= 1
+            time.sleep(300)        
+        except Exception as e:
+            logging.error(f"General Error: {type(e).__name__}: {e}")
+            break
