@@ -25,6 +25,8 @@ or you can use your system's package manager.
 | `IMMICH_INSTANCE_URL`  | Immich instance URL (e.g. `https://your-instance/api`) |
 | `IMMICH_ALBUM_ID`      | The ID of the album to download        |
 | `IMMICH_DOWNLOAD_PATH` | Directory to save downloaded assets    |
+| `RETRY_LIMIT`         | Maximum number of retries for failed downloads (default: 5) |
+| `RETRY_DELAY`         | Delay between retries in seconds (default: 300) |
 
 ## Configuration
 
