@@ -19,14 +19,14 @@ IMMICH_INSTANCE_URL = os.getenv('IMMICH_INSTANCE_URL')
 ALBUM_ID = os.getenv('IMMICH_ALBUM_ID')
 DOWNLOAD_PATH = Path(os.getenv('IMMICH_DOWNLOAD_PATH', './downloads'))
 try:
-    RETRY_LIMIT = int(os.getenv('RETRY_LIMIT', '5'))
+    RETRY_LIMIT = int(os.getenv('RETRY_LIMIT', '300'))
 except (ValueError, TypeError):
-    RETRY_LIMIT = 5  # Default if conversion fails
+    RETRY_LIMIT = 300  # Default if conversion fails
 
 try:
-    RETRY_DELAY = int(os.getenv('RETRY_DELAY', '5'))
+    RETRY_DELAY = int(os.getenv('RETRY_DELAY', '300'))
 except (ValueError, TypeError):
-    RETRY_DELAY = 5  # Default in minutes if conversion fails
+    RETRY_DELAY = 300  # Default in seconds if conversion fails
 
 def get_album_assets(album_id):
     """Retrieve all assets in album with pagination"""
@@ -90,9 +90,9 @@ if __name__ == "__main__":
                 logging.info(f"Max retry limit reached ({RETRY_LIMIT}). Exiting.")
                 break
             else:
-                logging.info(f"Retrying in {RETRY_DELAY} minutes... ({tryAgain} attempts left)")
+                logging.info(f"Retrying in {RETRY_DELAY} seconds... ({tryAgain} attempts left)")
             tryAgain -= 1
-            time.sleep(RETRY_DELAY * 60)
+            time.sleep(RETRY_DELAY)
         except Exception as e:
             logging.error(f"General Error: {type(e).__name__}: {e}")
             break
